@@ -27,6 +27,7 @@ fn main() {
             let r = parts.next().unwrap().parse::<Int>().unwrap();
             map.add(s,s+r,d-s);
         }
+        map.ranges.sort_by(|a,b| a.0.start.cmp(&b.0.start));
         steps.push(map);
     }
     println!("Part 1: {:?}", seeds.iter()
@@ -102,7 +103,7 @@ impl RangeMap {
 
     fn add(&mut self, start: Int, end: Int, delta: Int) {
         self.ranges.push((Range::new(start,end),delta));
-        self.ranges.sort_by(|a,b| a.0.start.cmp(&b.0.start));
+        // self.ranges.sort_by(|a,b| a.0.start.cmp(&b.0.start));
     }
 
     fn get(&self, i: Int) -> Int {
